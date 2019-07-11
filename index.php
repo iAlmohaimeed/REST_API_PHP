@@ -14,6 +14,7 @@ switch($request_method){
 }
 
 function doGet(){
+    fetchDB();
     echo "Get method";
 }
 
@@ -29,10 +30,22 @@ function doPost(){
     @return 
 */
 function fetchDB(){
-    $dbconnect = mysqli_connect('localhost', 'root', 'password', "testStudent.sql");
-    $query = mysqli_query($dbconnect, "USE testStudent;");
-    $query = mysqli_query($dbconnect, "SELECT * FROM student;");
-    $data = mysqli_fetch_assoc($query);
-    print_r($data);
+    $serverName = "prodserver.database.windows.net"; // update me
+    $connectionOptions = array(
+        "Database" => "student", // update me
+        "Uid" => "adminuser", // update me
+        "PWD" => "Password1" // update me
+    );
+    //Establishes the connection
+    $conn = sqlsrv_connect($serverName, $connectionOptions);
+    $tsql= "SELECT * from geade_one";
+    $getResults= sqlsrv_query($conn, $tsql);
+    echo ("Reading data from table" . PHP_EOL);
+    if ($getResults == FALSE)
+        echo (sqlsrv_errors());
+    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+     echo ($row['CategoryName'] . " " . $row['ProductName'] . PHP_EOL);
+    }
+    sqlsrv_free_stmt($getResults);
 }
 ?>
