@@ -9,5 +9,5 @@ A simple php RESTful-API
   * POST request reponse:
     > "Post method"
 ## Notes: 
-* Do not forget to specify the DB information and your log-in credinitials. 
+* Do not forget to specify the DB information and your log-in credentials. 
 * The SQLdb and the WebApp share the same **_Resource Group_**. 
