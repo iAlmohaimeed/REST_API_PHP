@@ -15,7 +15,7 @@ switch($request_method){
 
 function doGet(){
     fetchDB();
-    echo "Get method";
+    echo "\nGet method";
 }
 
 function doPost(){
@@ -42,7 +42,7 @@ function fetchDB(){
     $tsql= "SELECT * from grade_one";
     // Fetch the data from the database
     $getResults= sqlsrv_query($conn, $tsql);
-    echo ("Reading data from table" . PHP_EOL);
+    echo ("Reading data from table\n" . PHP_EOL);
     // Handle server error 
     if ($getResults == FALSE)
         echo (sqlsrv_errors());
