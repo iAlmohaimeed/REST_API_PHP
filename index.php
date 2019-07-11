@@ -15,7 +15,7 @@ switch($request_method){
 
 function doGet(){
     fetchDB();
-    echo "\nGet method";
+    echo "\r\nGet method";
 }
 
 function doPost(){
