@@ -36,16 +36,21 @@ function fetchDB(){
         "Uid" => "adminuser", // update me
         "PWD" => "Password1" // update me
     );
-    //Establishes the connection
+    // Establishes the connection
     $conn = sqlsrv_connect($serverName, $connectionOptions);
+    // Write your query here
     $tsql= "SELECT * from grade_one";
+    // Fetch the data from the database
     $getResults= sqlsrv_query($conn, $tsql);
     echo ("Reading data from table" . PHP_EOL);
+    // Handle server error 
     if ($getResults == FALSE)
         echo (sqlsrv_errors());
+    // Print out the fetched data. 
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-     echo ($row['firstname'] . " " . $row['age'] . PHP_EOL);
+     echo ($row['id'] . " " . $row['firstname'] . " " . $row['age'] . PHP_EOL);
     }
+    // Free all resources for the specified statment
     sqlsrv_free_stmt($getResults);
 }
 ?>
